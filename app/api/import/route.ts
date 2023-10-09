@@ -10,18 +10,14 @@ import { createCompanyNode } from '../lib/createCompanyNode';
  * @returns: <NextResponse> - a JSON response with a message to FE
  */
 export async function POST(req: Request) {
-  const session = getDbSession();
   const data = req.body
   if (!data) return NextResponse.json({ message: 'No data provided.' })
 
+  const session = await getDbSession();
   try {
     const parsedData = await streamToJson(data)
-    console.log('parsedData', parsedData)
-    
-    // TODO: handle any type of node upload
-
-    // createCompanyNode(parsedData, session)
-
+    await createCompanyNode(parsedData, session)
+    console.log('created company nodes', parsedData.length)
     return NextResponse.json({ text: 'added-companies' });
   } catch (err) {
     console.error('Error adding companies', err);

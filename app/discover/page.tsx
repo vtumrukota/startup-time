@@ -1,13 +1,12 @@
 import { Sidebar } from "../components/sidebar/Sidebar"
-import { Welcome } from "./Welcome"
 
-const HomePage = () => {
+export const DiscoverPage = () => {
   return (
     <>
       <Sidebar />
-      <Welcome />
+      <div>Discover Page Test!</div>
     </>
   )
 }
 
-export default HomePage
+export default DiscoverPage

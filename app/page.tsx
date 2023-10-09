@@ -1,9 +1,12 @@
 import { ReactElement } from "react"
 import Layout from "./layout"
+import HomePage from "./home/page"
 
 const Root = () => {
   return (
-    <div className="flex flex-col items-center">Main App Loaded!</div>
+    <main className="flex flex-row items-center justify-start">
+      <HomePage />
+    </main>
   )
 }
 

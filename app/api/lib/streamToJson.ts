@@ -13,6 +13,7 @@ export const streamToJson = async (stream: any): Promise<any> => {
     data += new TextDecoder().decode(chunk);
   }
 
+  // Extract array portion of JSON data
   const startIndex = data.indexOf('[');
   const endIndex = data.lastIndexOf(']') + 1; // Include the closing bracket and brace
 

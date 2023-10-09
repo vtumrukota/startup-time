@@ -1,6 +1,7 @@
 import { ReactElement } from "react"
 import Layout from "./layout"
 import HomePage from "./home/page"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Root = () => {
   return (

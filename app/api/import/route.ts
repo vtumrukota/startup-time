@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   const data = req.body
   if (!data) return NextResponse.json({ message: 'No data provided.' })
 
-  const session = await getDbSession();
+  let session = await getDbSession();
   try {
     const parsedData = await streamToJson(data)
     await createCompanyNode(parsedData, session)

@@ -3,7 +3,7 @@ import { Session } from "neo4j-driver"
 export const createCompanyNode = async (data: any[], session: Session) => {
   const query = `
     UNWIND $data AS companyData
-    CREATE (c:Company {
+    MERGE (c:Company {
       company_id: companyData.company_id,
       company_name: companyData.company_name,
       headcount: companyData.headcount

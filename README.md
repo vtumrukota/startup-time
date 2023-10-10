@@ -45,3 +45,17 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ### Obstacles
 - Neo4j not merging properly with NULL values
+
+-- create relationships:
+``
+  MATCH (company:CompanyNode), (acquisition:CompanyAcquisitionNode)
+  WHERE company.company_id = acquisition.acquired_company_id
+  CREATE (company)-[:ACQUIRED_BY]->(acquisition)
+``
+
+``
+  MATCH (company:CompanyNode), (employment:PersonEmploymentNode)
+  WHERE company.company_id = employment.company_id
+  CREATE (employment)-[:WORKS_AT]->(company)
+``
+  

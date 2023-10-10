@@ -1,6 +1,6 @@
 import { Sidebar } from "../components/sidebar/Sidebar"
 
-export const DiscoverPage = () => {
+const DiscoverPage = () => {
   return (
     <>
       <Sidebar />

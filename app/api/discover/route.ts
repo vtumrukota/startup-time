@@ -9,6 +9,8 @@ export async function GET(req: Request) {
   try {
     const session = await getDbSession() // TODO: make sure to close 
 
+    
+
   } catch (err) {
     console.log(`Couldn't fetch relationship data`, err)
   } 

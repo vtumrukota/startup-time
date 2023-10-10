@@ -58,4 +58,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   WHERE company.company_id = employment.company_id
   CREATE (employment)-[:WORKS_AT]->(company)
 ``
-  
+
+- Company -> Current Employee
+- Company -> Former Employee
+
+- Company -> Been Acquired
+- Company -> Has Acquired
+

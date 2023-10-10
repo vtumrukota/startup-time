@@ -1,11 +1,12 @@
 import { Sidebar } from "../components/sidebar/Sidebar"
+import { DiscoverView } from "./DiscoverView"
 
 const DiscoverPage = () => {
   return (
-    <>
+    <main className="flex flex-row items-center">
       <Sidebar />
-      <div>Discover Page Test!</div>
-    </>
+      <DiscoverView />
+    </main>
   )
 }
 

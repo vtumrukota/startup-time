@@ -20,6 +20,8 @@ export const streamToJson = async (stream: any): Promise<any> => {
   // Extract the JSON data
   const jsonData = data.slice(startIndex, endIndex);
 
+  console.log('JSON DATA', jsonData)
+
   try {
     const parsedJSON = JSON.parse(jsonData);
     return parsedJSON;

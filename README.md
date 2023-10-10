@@ -41,3 +41,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## neo4j
 - Added Uniqueness constraints for each node type to avoid duplicate rows on upload
+- Used console.log - normally would use cloud logging mechanism
+
+### Obstacles
+- Neo4j not merging properly with NULL values

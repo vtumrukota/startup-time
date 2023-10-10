@@ -4,17 +4,23 @@ export enum ImportNodeTypes {
   CompanyAcquisition = 'CompanyAcquisition',
 }
 
+const NODE_LABELS = {
+  [ImportNodeTypes.Company]: 'Company',
+  [ImportNodeTypes.PersonEmployment]: 'Person Employment',
+  [ImportNodeTypes.CompanyAcquisition]: 'Company Acquisition',
+}
+
 export const IMPORT_DROPDOWN = [
   {
-    label: ImportNodeTypes.Company,
+    label: NODE_LABELS[ImportNodeTypes.Company],
     value: ImportNodeTypes.Company,
   }, 
   {
-    label: ImportNodeTypes.PersonEmployment,
+    label: NODE_LABELS[ImportNodeTypes.PersonEmployment],
     value: ImportNodeTypes.PersonEmployment,
   }, 
   {
-    label: ImportNodeTypes.CompanyAcquisition,
+    label: NODE_LABELS[ImportNodeTypes.CompanyAcquisition],
     value: ImportNodeTypes.CompanyAcquisition,
   }
 ]

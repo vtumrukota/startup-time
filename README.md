@@ -59,6 +59,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   CREATE (employment)-[:WORKS_AT]->(company)
 ``
 
+``
+MATCH (company:Company), (employment:PersonEmployment)
+WHERE company.company_id = employment.company_id AND NOT (employment.end_date IS NULL OR employment.end_date = "")
+CREATE (employment)-[:WORKED_AT]->(company)
+``
+
 - Company -> Current Employee
 - Company -> Former Employee
 

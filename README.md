@@ -89,6 +89,9 @@ I felt that this was the heart of the problem, and a traditional relational data
 
 I also have never encountered a Graph problem like this in my professional work, so I felt it was a great opportunity to learn a new critical piece of tech like this to help me solve new types of problems in the future!
 
+Visualizing the data was also super cool with Neo4j:
+![Alt text](image-1.png)
+
 ***Alot of the work I did ended up being within the Neo4j Aura DB portal, happy to showcase this in person in the next steps!***
 
 ## Challenges/Learnings

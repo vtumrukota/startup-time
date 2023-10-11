@@ -47,7 +47,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Neo4j not merging properly with NULL values
 
 -- create relationships:
-``
+<!-- ``
   MATCH (company:CompanyNode), (acquisition:CompanyAcquisitionNode)
   WHERE company.company_id = acquisition.acquired_company_id
   CREATE (company)-[:ACQUIRED_BY]->(acquisition)
@@ -58,16 +58,92 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   WHERE company.company_id = employment.company_id
   CREATE (employment)-[:WORKS_AT]->(company)
 ``
-
 ``
+MATCH (company:Company), (acquisition:CompanyAcquisition)
+  WHERE company.company_id = acquisition.parent_company_id
+  CREATE (company)-[:HAS_ACQUIRED]->(acquisition)
+`` -->
+
+
+<!-- ``
 MATCH (company:Company), (employment:PersonEmployment)
 WHERE company.company_id = employment.company_id AND NOT (employment.end_date IS NULL OR employment.end_date = "")
 CREATE (employment)-[:WORKED_AT]->(company)
-``
+`` -->
 
-- Company -> Current Employee
-- Company -> Former Employee
+- Company -> Current Employees
+- Company -> Former Employees
 
 - Company -> Been Acquired
 - Company -> Has Acquired
 
+- Employee -> Companies Worked for
+- Employee -> Worked at Acquired Companies
+
+
+
+
+
+Company -> CompanyAcquisitions (HAS_ACQUIRED)
+```
+MATCH (c:Company), (ca:CompanyAcquisition)
+WHERE c.company_id = ca.parent_company_id
+CREATE (c)-[:HAS_ACQUIRED]->(ca)
+```
+
+CompanyAcquistion -> Company (WAS_ACQUIRED)
+```
+MATCH (c:Company), (ca:CompanyAcquisition)
+WHERE c.company_id = ca.acquired_company_id
+CREATE (ca)-[:WAS_ACQUIRED]->(c)
+```
+
+// Search for all acquisitions of parent:
+```
+MATCH (parent:Company {company_name: 'Zynga'})-[:HAS_ACQUIRED]->(ca:CompanyAcquisition)-[:WAS_ACQUIRED]->(acquired:Company)
+RETURN acquired
+```
+
+
+CompanyAcquisition -> Comapny (WAS_MERGED) // true
+
+// all acquisitions who were merged 
+```
+MATCH (parent:Company)-[:HAS_ACQUIRED]->(ca:CompanyAcquisition {merged_into_parent_company: true})-[:WAS_ACQUIRED]->(acquired:Company)
+RETURN acquired
+```
+
+Company -> CompanyAcqusitions -> Company (COMPANIES_ACQUIRED)
+
+
+Company -> Employee (WORKERS)
+```
+MATCH (c:Company), (p:PersonEmployment)
+WHERE c.company_id = p.company_id AND (p.end_date IS NULL OR p.end_date = "")
+CREATE (c)-[:WORKERS]->(p)
+```
+
+Company -> Employee (OLD_WORKERS)
+```
+MATCH (c:Company), (p:PersonEmployment)
+WHERE c.company_id = p.company_id AND NOT (p.end_date IS NULL OR p.end_date = "")
+CREATE (c)-[:OLD_WORKERS]->(p)
+```
+
+
+Employee -> Company (WORKED_AT)
+```
+MATCH (c:Company), (p:PersonEmployment)
+WHERE p.company_id = c.company_id AND NOT (p.end_date IS NULL OR p.end_date = "")
+CREATE (p)-[:WORKS_FOR]->(c)
+```
+
+
+Employee -> Company (WORKS_FOR) // current
+```
+MATCH (c:Company), (p:PersonEmployment)
+WHERE p.company_id = c.company_id AND (p.end_date IS NULL OR p.end_date = "")
+CREATE (p)-[:WORKS_FOR]->(c)
+```
+
+*** Assume no start date is current employee

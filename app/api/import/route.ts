@@ -1,11 +1,11 @@
 import url from 'url'
 import { NextResponse } from 'next/server'
 import { getDbSession } from '../lib/neo4j'
-import { streamToJson } from '../lib/streamToJson';
-import { createCompanyNode } from '../lib/createCompanyNode';
+import { streamToJson } from '../lib/helpers/streamToJson';
+import { createCompanyNode } from '../lib/create/createCompanyNode';
 import { ImportNodeTypes } from '@/app/import/import.constants';
-import { createPersonEmploymentNode } from '../lib/createPersonEmploymentNode';
-import { createCompanyAcquisitionNode } from '../lib/createCompanyAcquisitionNode';
+import { createPersonEmploymentNode } from '../lib/create/createPersonEmploymentNode';
+import { createCompanyAcquisitionNode } from '../lib/create/createCompanyAcquisitionNode';
 
 /**
  * Import companies from a JSON file upload into our graph database

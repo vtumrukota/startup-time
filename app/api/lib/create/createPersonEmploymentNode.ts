@@ -1,5 +1,5 @@
 import { Session } from "neo4j-driver"
-import { PersonEmploymentNode } from "./models";
+import { PersonEmploymentNode } from "../models";
 
 export const createPersonEmploymentNode = async (data: any[], session: Session) => {
   const validNodes: PersonEmploymentNode[] = []

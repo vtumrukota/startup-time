@@ -1,5 +1,5 @@
 import { Session } from "neo4j-driver"
-import { CompanyNode } from "./models"
+import { CompanyNode } from "../models"
 
 export const createCompanyNode = async (data: any[], session: Session) => {
   const validNodes: CompanyNode[] = []

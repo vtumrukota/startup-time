@@ -6,7 +6,6 @@
  */
 export const streamToJson = async (stream: any): Promise<any> => {
   let data = '';
-  
   for await (const chunk of stream) {
     data += new TextDecoder().decode(chunk);
   }
@@ -14,19 +13,14 @@ export const streamToJson = async (stream: any): Promise<any> => {
   // Extract array portion of JSON data
   const startIndex = data.indexOf('[');
   const endIndex = data.lastIndexOf(']') + 1; // Include the closing bracket and brace
-
-  // Extract the JSON data
   const jsonData = data.slice(startIndex, endIndex);
-
-  console.log('JSON DATA', jsonData)
 
   try {
     const parsedJSON = JSON.parse(jsonData);
     return parsedJSON;
   } catch (err) {
     console.log('Error parsing JSON stream', err);
-    console.log('Raw JSON data:', data); // Log the raw data for debugging
-    console.log('DATA LENGTH', data.startsWith('['))
-    throw err; // Rethrow the error if needed
+    console.log('Raw JSON data:', data);
+    throw err;
   }
 }

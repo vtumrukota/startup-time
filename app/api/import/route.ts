@@ -36,7 +36,6 @@ export async function POST(req: Request) {
     }
     return NextResponse.json({ type: nodeType, text: 'imported data' });
   } catch (err) {
-    console.error('Error adding companies', err);
-    return NextResponse.json({ text: 'An error occurred while processing the data.' });
+    return NextResponse.json({ text: 'An error occurred while processing the data.', error: err }, { status: 400 });
   }
 }
